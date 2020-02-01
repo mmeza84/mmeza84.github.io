@@ -4,6 +4,7 @@ var Game = new Vue({
 		return {
 			currentRuntime: "00:00",
 			gameName: "VueTest",
+			gameStopped: true,
 			statusMessages: [],
 			ourTeam: "Sao Paulo TX",
 			theirTeam: "Sting",
@@ -37,13 +38,15 @@ var Game = new Vue({
 			});
 		},
 		startTimer(half) {
+			this.gameStopped = false;
 			this.timerStart = moment().format("X");
 			this.startTimerRenderCycle();
 			this.statusMessages.push({
 				message: `${half === 1 ? "First" : "Second"} half started`
-			});	
+			});
 		},
 		endTimer(half) {
+			this.gameStopped = true;
 			clearInterval(this._timer);
 			this.statusMessages.push({
 				message: `${half === 1 ? "First" : "Second"} half ended`

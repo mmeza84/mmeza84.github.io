@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Soccer Game Manager</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="soccer.css" rel="stylesheet" />
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -23,8 +24,8 @@
 				<div class="game-score-mgmt game-section">
 					<h3>Game Score</h3>
 					<div>{{ ourTeam }} <div class="score-div">{{ ourScore }}</div> - <div class="score-div">{{ theirScore }}</div> {{ theirTeam }}</div>
-					<button v-on:click="incrementOurTeam">{{ ourTeam }} Goal</button>
-					<button v-on:click="incrementTheirTeam">{{ theirTeam }} Goal</button>
+					<button v-on:click="incrementOurTeam" v-bind:disabled="gameStopped">{{ ourTeam }} Goal</button>
+					<button v-on:click="incrementTheirTeam"v-bind:disabled="gameStopped">{{ theirTeam }} Goal</button>
 				</div>
 				<div class="game-messages game-section">
 					<h3>Game Status Messages</h3>
