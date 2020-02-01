@@ -31,6 +31,16 @@ header h1 {
 	padding: 0;
 }
 
+@media (max-width: 500px) {
+	button {
+		width: 100%;
+	}
+
+	button:not(:last-of-type) {
+		margin-bottom: 0.75em;
+	}
+}
+
 button {
 	background-color: #66ab8b;
 	color: #fefefe;
