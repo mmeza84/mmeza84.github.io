@@ -52,14 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	});
-
-
-
-	// listen for data change
-
-		// update data array
-		// save to localStorage
-		// rerender chart via data change
 });
 
 function addWeightInput() {
@@ -70,15 +62,20 @@ function addWeightInput() {
 		var date = dateInput.value;
 		var weight = weightInput.value;
 
+		// push into data array
 		loadedData.push({
 			date,
 			weight
 		});
 
+		// save to localStorage
+
+		// push into live data
 		chart.data.labels.push(dateInput.value);
 		chart.data.datasets[0].data.push(weightInput.value);
 		chart.update();
 
+		// clear values
 		dateInput.value = '';
 		weightInput.value = '';
 	}
