@@ -68,7 +68,7 @@ function addWeightInput() {
 			weight
 		});
 
-		// save to localStorage
+		// TODO save to localStorage
 
 		// push into live data
 		chart.data.labels.push(dateInput.value);
