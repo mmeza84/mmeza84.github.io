@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+	margin: 0;
+	padding: 2em;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+input, textarea, button, select {
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	margin: 0 0 1em;
+	padding: 0;
+}
+
+.canvas-wrapper {
+	max-width: 800px;
+}
+
+canvas#weightChart {
+	border: 1px solid #131313;
+}
+
+form {
+	display: table;
+}
+
+form .form-input {
+	display: table-row;
+}
+
+form .form-input label,
+form .form-input input {
+	display: table-cell;
+	margin: 0.5em;
+}
