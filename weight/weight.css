@@ -24,6 +24,29 @@ canvas#weightChart {
 	border: 1px solid #131313;
 }
 
+.recent-entries > .table-wrapper {
+	max-height: 100px;
+	overflow-x: auto;
+}
+
+.entry-list {
+	display: table;
+}
+
+.entry-list .entry {
+	display: table-row;
+}
+
+.entry-list .entry .entry-date,
+.entry-list .entry .entry-date {
+	display: table-cell;
+}
+
+.entry-date {
+	padding-right: 1em;
+	font-weight: 700;
+}
+
 form {
 	display: table;
 }

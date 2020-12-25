@@ -2,27 +2,47 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 		<link rel="stylesheet" type="text/css" href="weight.css"/>
 	</head>
 	<body>
-		<h1>Weight Tracker</h1>
-		<div class="canvas-wrapper">
-			<canvas id="weightChart"></canvas>
+		<div id="app">
+			<h1>Weight Tracker</h1>
+			<div class="canvas-wrapper">
+				<canvas id="weightChart"></canvas>
+			</div>
+			<div class="recent-entries">
+				<h3>Recent Entries</h3>
+				<div class="entry-list" v-if="!entries.length">
+					No Entries Found
+				</div>
+				<div class="table-wrapper">
+					<div class="entry-list" v-if="entries.length">
+						<div class="entry" v-for="entry in entries">
+							<span class="entry-date">{{ entry.date }}</span>
+							<span class="entry-weight">{{ entry.weight }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="new-entry">
+				<h3>Add An Entry</h3>
+				<form v-on:submit.prevent="addWeightInput">
+					<div class="form-input">
+						<label for="weighInDate">Date</label>
+						<input type="date" id="weighInDate" name="weighInDate" v-model="newDate" />
+					</div>
+					<div class="form-input">
+						<label for="weighInValue">Weight</label>
+						<input type="number" id="weighInValue" name="weighInValue" v-model="newWeight" />
+					</div>
+					<div class="form-input">
+						<input type="submit" value="Add Weight">
+					</div>
+				</form>
+			</div>
 		</div>
-		<form action="#" onsubmit="return addWeightInput();">
-			<div class="form-input">
-				<label for="weighInDate">Date</label>
-				<input type="date" id="weighInDate" name="weighInDate" />
-			</div>
-			<div class="form-input">
-				<label for="weighInValue">Weight</label>
-				<input type="number" id="weighInValue" name="weighInValue" />
-			</div>
-			<div class="form-input">
-				<input type="submit" value="Add Weight">
-			</div>
-		</form>
 		<script type="text/javascript" src="./weight.js"></script>
 	</body>
 </html>
