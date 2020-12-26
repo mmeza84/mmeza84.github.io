@@ -16,8 +16,9 @@ h1 {
 	padding: 0;
 }
 
-.canvas-wrapper {
+#app {
 	max-width: 800px;
+	margin: 0 auto;
 }
 
 canvas#weightChart {
@@ -31,20 +32,35 @@ canvas#weightChart {
 
 .entry-list {
 	display: table;
+	table-layout: fixed;
+	border-collapse: collapse;
+	width: 100%;
+	background-color: #D6D6D6;
 }
 
-.entry-list .entry {
-	display: table-row;
+.entry:nth-child(2n) {
+	background-color: rgba(0, 0, 0, 0.1);
 }
 
-.entry-list .entry .entry-date,
-.entry-list .entry .entry-date {
-	display: table-cell;
+.entry-list td {
+	padding: 0.5em;
 }
 
 .entry-date {
 	padding-right: 1em;
 	font-weight: 700;
+}
+
+.entry-weight {
+	padding-right: 2em;
+}
+
+.entry-edit {
+	width: 50px;
+}
+
+.entry-delete {
+	width: 30px
 }
 
 form {

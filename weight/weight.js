@@ -13,13 +13,25 @@ var app = new Vue({
 			this.entries = [];
 		} else {
 			this.entries = JSON.parse(cachedData);
+			// make sure we have ids
+			this.entries = this.entries.map(function(item, index) {
+				if (!Number.isInteger(item.id)) {
+					item.id = index;
+				}
+
+				return item;
+			});
 		}
 	},
 	methods: {
+		_pluck: function(array, key) {
+			return array.map(function(obj) {
+				return obj[key];
+			});
+		},
 		addWeightInput: function(event) {
+			// pseudo-validation for now
 			if (this.newDate && this.newWeight) {
-				console.log('new date, new weight', this.newDate, this.newWeight);
-				
 				// push into data array
 				this.entries.push({
 					date: this.newDate,
@@ -30,33 +42,48 @@ var app = new Vue({
 				localStorage.removeItem(LOCAL_STORAGE_KEY);
 				localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(this.entries));
 
-				// push into live data
-				this.chart.data.labels.push(this.newDate);
-				this.chart.data.datasets[0].data.push(this.newWeight);
-				this.chart.update();
-
+				// re-render
+				this.updateGraph();
+				
 				// clear values
 				this.newDate = '';
 				this.newWeight = 0;
 			}
+		},
+		deleteEntry: function(index) {
+			this.entries.splice(index, 1);
+			this.updateGraph();
+		},
+		editEntry: function(index) {
+			alert("Editing is not implemented yet.");
+		},
+		getLabelsFromList: function() {
+			return this._pluck(this.entries, 'date');
+		},
+		getWeightsFromList: function() {
+			return this._pluck(this.entries, 'weight');
+		},
+		updateGraph: function() {
+			// re-calculate chart data from entries
+			this.chart.data.labels = this.getLabelsFromList();
+			this.chart.data.datasets[0].data = this.getWeightsFromList();
+			this.chart.update();
 		}
 	},
 	mounted: function() {
 		// load chart
 		var ctx = document.getElementById('weightChart').getContext('2d');
+		var labels = this.getLabelsFromList();
+		var weights = this.getWeightsFromList();
 		this.chart = new Chart(ctx, {
 			type: 'line',
 			data: {
-				labels: this.entries.map(function(entry) {
-					return entry.date;
-				}),
+				labels,
 				datasets: [{
 					label: 'Your Daily Weigh-In',
 					backgroundColor: 'rgb(54, 162, 235)',
 					borderColor: 'rgb(54, 162, 235)',
-					data: this.entries.map(function(entry) {
-						return entry.weight;
-					}),
+					data: weights,
 					fill: false
 				}]
 			},

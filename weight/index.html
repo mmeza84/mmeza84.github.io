@@ -17,14 +17,14 @@
 				<div class="entry-list" v-if="!entries.length">
 					No Entries Found
 				</div>
-				<div class="table-wrapper">
-					<div class="entry-list" v-if="entries.length">
-						<div class="entry" v-for="entry in entries">
-							<span class="entry-date">{{ entry.date }}</span>
-							<span class="entry-weight">{{ entry.weight }}</span>
-						</div>
-					</div>
-				</div>
+				<table class="entry-list" v-if="entries.length">
+					<tr class="entry" v-for="entry in entries">
+						<td class="entry-date">{{ entry.date }}</td>
+						<td class="entry-weight">{{ entry.weight }}</td>
+						<td class="entry-edit"><a href="#" v-on:click.prevent="editEntry(entry.id)">[Edit]</a></td>
+						<td class="entry-delete"><a href="#" v-on:click.prevent="deleteEntry(entry.id)">[X]</a></td>
+					</tr>
+				</table>
 			</div>
 			<div class="new-entry">
 				<h3>Add An Entry</h3>
