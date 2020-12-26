@@ -2,7 +2,8 @@
 
 body {
 	margin: 0;
-	padding: 2em;
+	padding: 0;
+	background-color: #525252;
 }
 
 body,
@@ -19,6 +20,9 @@ h1 {
 #app {
 	max-width: 800px;
 	margin: 0 auto;
+	padding: 1em 2em;
+	background-color: #FEFEFE;
+	height: 100vh;
 }
 
 canvas#weightChart {
